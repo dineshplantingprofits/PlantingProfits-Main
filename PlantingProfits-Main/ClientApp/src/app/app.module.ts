@@ -4,9 +4,7 @@ import { NgModule } from '@angular/core';
 import Amplify, { Auth } from 'aws-amplify';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms'; 
 
 Amplify.configure({
@@ -25,8 +23,6 @@ Amplify.configure({
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignUpComponent,
     HomeComponent
   ],
   imports: [
