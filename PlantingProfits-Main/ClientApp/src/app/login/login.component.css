@@ -1,0 +1,128 @@
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+.txt1 {
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-middle {
+  vertical-align: middle;
+}
+
+.p-t-54 {
+  padding-top: 54px;
+}
+
+.p-b-20 {
+  padding-bottom: 20px;
+}
+
+.flex-c-m {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Social item ]*/
+.login100-social-item {
+  font-size: 25px;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+  .login100-social-item:hover {
+    color: #fff;
+    background-color: #333333;
+  }
+
+
+.bg1 {
+  background-color: #3b5998
+}
+
+.bg2 {
+  background-color: #1da1f2
+}
+
+.bg3 {
+  background-color: #ea4335
+}
+
+.bg4 {
+  background-color: #0073b1
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-facebook-square:before {
+  content: "\f082";
+}
+
+.fa-facebook-f:before,
+.fa-facebook:before {
+  content: "\f09a";
+}
+
+.fa-facebook-official:before {
+  content: "\f230";
+}
+
+.fa-facebook-square:before {
+  content: "\f082"
+}
+.fa-facebook-f:before, .fa-facebook:before {
+  content: "\f09a"
+}
+.fa-facebook:before {
+  content: "\f09a"
+}
+.fa-facebook-official:before {
+  content: "\f230"
+}

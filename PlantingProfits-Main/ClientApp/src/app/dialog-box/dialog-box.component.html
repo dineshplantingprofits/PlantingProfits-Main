@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>{{action}}</h2>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput
+           placeholder="LogId Readonly If Add"
+           formControlName="logId" readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Title"
+           formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(value)]="selected" placeholder="Select Type"
+                formControlName="type">
+      <mat-option value="NewRelease" class="type-blue">
+        Newrelease
+      </mat-option>
+      <mat-option value="Update" class="type-green">
+        Update
+      </mat-option>
+      <mat-option value="Fix" class="type-red">
+        Fix
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Description"
+              formControlName="content" [ngClass]="(selected == 'NewRelease')?'type-blue':((selected == 'Fix')?'type-red':((selected == 'Update')?'type-green':''))">
+        </textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="mat-raised-button"
+          (click)="close()">
+    Close
+  </button>
+  <button class="mat-raised-button mat-primary"
+          (click)="save()">
+    Save
+  </button>
+</mat-dialog-actions>
