@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -43,27 +43,6 @@ export class RegistrationComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   register() {
-    try {
-      const user = Auth.signUp({
-        username: this.f.username.value,
-        password: this.f.password.value,
-        attributes: {
-          email: this.f.firstName.value,
-          address: 'er',
-          phone_number: '+15555555555',
-          given_name: 'given name',
-          family_name: 'familyName'
-        }
-      });
-      console.log({ user });
-      alert('User signup completed , please check verify your email.');
-      this.router.navigate(['login']);
-    } catch (error) {
-      console.log('error signing up:', error);
-    }
-  }
-
-  onSubmit() {
     this.submitted = true;
 
     // reset alerts on submit
@@ -75,16 +54,24 @@ export class RegistrationComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.register(this.registerForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
+    try {
+      const user = Auth.signUp({
+        username: this.f.email.value,
+        password: this.f.password.value,
+        attributes: {
+          email: this.f.email.value,
+          address: 'er',
+          phone_number: '+15555555555',
+          given_name: '',
+          family_name: ''
+        }
+      });
+      console.log({ user });
+      alert('User signup completed , please check verify your email.');
+      this.router.navigate(['login']);
+    } catch (error) {
+      console.log('error signing up:', error);
+    }
+    this.loading = false;
   }
 }

@@ -308,3 +308,7 @@ border-radius:0.5em;
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.red-font {
+  color: rgb(255,0,0);
+}

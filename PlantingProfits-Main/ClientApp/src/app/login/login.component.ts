@@ -14,9 +14,7 @@ import { Auth } from 'aws-amplify';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  assginuseerdetails: any;
-  userimage: any;
-  username!: string;
+  email!: string;
   loginForm!: FormGroup;
   loading = false;
   submitted = false;
@@ -37,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
 
@@ -50,9 +48,20 @@ export class LoginComponent implements OnInit {
 
 
   async loginWithCognito() {
+    this.submitted = true;
+
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
     try {
-      var user = await Auth.signIn(this.f.username.value, this.f.password.value);
-      console.log('Authentication performed for user=' + this.f.username.value + 'password=' + this.f.password.value + ' login result==' + user);
+      var user = await Auth.signIn(this.f.email.value, this.f.password.value);
+      console.log('Authentication performed for user=' + this.f.email.value + 'password=' + this.f.password.value + ' login result==' + user);
       var tokens = user.signInUserSession;
       if (tokens != null) {
         console.log('User authenticated');
@@ -65,43 +74,7 @@ export class LoginComponent implements OnInit {
       console.log(error);
       alert('User Authentication failed');
     }
-  }
-
-  LoginHandler(name: string, randomPassword: string) {
-    this.authenticationService.openIdLogin(name, randomPassword)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // reset alerts on submit
-    this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
+    this.loading = false;
   }
 
   signOut(): void {
