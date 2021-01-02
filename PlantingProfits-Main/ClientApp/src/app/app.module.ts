@@ -18,7 +18,6 @@ import { ErrorInterceptor } from './helpers/error-interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend-interceptor';
 import { AlertComponent } from './alert/alert.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 Amplify.configure({
   Auth: {
@@ -40,7 +39,6 @@ Amplify.configure({
     RegistrationComponent,
     AlertComponent,
     DialogBoxComponent,
-    DashboardComponent,
   ],
   entryComponents: [DialogBoxComponent],
   imports: [
