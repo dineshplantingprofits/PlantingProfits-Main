@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-registration',
@@ -40,6 +41,27 @@ export class RegistrationComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+
+  register() {
+    try {
+      const user = Auth.signUp({
+        username: this.f.username.value,
+        password: this.f.password.value,
+        attributes: {
+          email: this.f.firstName.value,
+          address: 'er',
+          phone_number: '+15555555555',
+          given_name: 'given name',
+          family_name: 'familyName'
+        }
+      });
+      console.log({ user });
+      alert('User signup completed , please check verify your email.');
+      this.router.navigate(['login']);
+    } catch (error) {
+      console.log('error signing up:', error);
+    }
+  }
 
   onSubmit() {
     this.submitted = true;

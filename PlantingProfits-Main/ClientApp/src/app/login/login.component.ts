@@ -6,6 +6,7 @@ import { AlertService } from '../services/alert.service';
 import { first } from 'rxjs/operators';
 import { User } from '../model/user';
 import { UserService } from '../services/user.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl!: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -45,6 +47,25 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
+
+
+  async loginWithCognito() {
+    try {
+      var user = await Auth.signIn(this.f.username.value, this.f.password.value);
+      console.log('Authentication performed for user=' + this.f.username.value + 'password=' + this.f.password.value + ' login result==' + user);
+      var tokens = user.signInUserSession;
+      if (tokens != null) {
+        console.log('User authenticated');
+
+        this.router.navigate(['home']);
+        alert('You are logged in successfully !');
+
+      }
+    } catch (error) {
+      console.log(error);
+      alert('User Authentication failed');
+    }
+  }
 
   LoginHandler(name: string, randomPassword: string) {
     this.authenticationService.openIdLogin(name, randomPassword)
